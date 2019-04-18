@@ -1,0 +1,8 @@
+spring:
+  #\u6570\u636E\u6E90\u914D\u7F6E
+  datasource:
+    url: jdbc:mysql://101.132.129.130:3306/alin?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf8&useSSL=false
+    username: root
+    password: qwert123!@#
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource

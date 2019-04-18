@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <!-- import CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <link rel="stylesheet" href="./css/common.css">
+</head>
+<body>
+<div id="app">
+    <el-container>
+        <el-header style="">
+            <p align="center" style="font-weight: bold">用户列表</p>
+        </el-header>
+        <el-main>
+            <div class="filter-container">
+                <el-input
+                        placeholder="请输入内容"
+                        v-model="keyWord"
+                        style="width: 200px"
+                        clearable>
+                </el-input>
+                <el-button class="filter-item" type="primary" icon="el-icon-search" @click="init">搜索</el-button>
+            </div>
+
+            <el-table
+                    :data="list"
+                    border
+                    style="width: 100%">
+                <el-table-column
+                        prop="id"
+                        align="center"
+                        label="编号"
+                        min-width="20%">
+                </el-table-column>
+                <el-table-column
+                        prop="account"
+                        align="center"
+                        label="账号"
+                        min-width="20%">
+                </el-table-column>
+                <el-table-column
+                        prop="name"
+                        align="center"
+                        label="name"
+                        min-width="20%">
+                </el-table-column>
+                <el-table-column
+                        prop="birthday"
+                        align="center"
+                        label="生日"
+                        min-width="20%">
+                </el-table-column>
+                <el-table-column
+                        label="操作"
+                        align="center"
+                        min-width="20%">
+                    <template slot-scope="scope">
+                        <el-button @click="setUser(scope.row)" type="success" size="small">修改</el-button>
+                        <el-button @click="handleDelete(scope.row.key)" type="danger" size="small">删除</el-button>
+                    </template>
+                </el-table-column>
+            </el-table>
+
+            <el-dialog :visible.sync="visible" title="修改">
+                <el-form label-position="right" label-width="80px" :model="user">
+                    <el-form-item label="账号">
+                        <el-input v-model="user.account"></el-input>
+                    </el-form-item>
+                    <el-form-item label="姓名">
+                        <el-input v-model="user.name"></el-input>
+                    </el-form-item>
+                    <el-form-item label="生日">
+                        <el-input v-model="user.birthday"></el-input>
+                    </el-form-item>
+                </el-form>
+                <el-button type="primary" @click="update">确定</el-button>
+            </el-dialog>
+        </el-main>
+    </el-container>
+</div>
+</body>
+<!-- import Vue before Element -->
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<!-- import JavaScript -->
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="./js/common.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+        data: function () {
+            return {
+                visible: false,
+                keyWord: '',
+                user: {
+                    id: null,
+                    account: null,
+                    name: null,
+                    birthday: null,
+                },
+                list: []
+            }
+        },
+        mounted() {
+            this.init()
+        },
+        methods: {
+            init() {
+                axios({
+                    method: api.list.method,
+                    url: api.list.url,
+                    params: {
+                        keyWord: this.keyWord
+                    }
+                }).then(response => {
+                    this.list = response.data
+                    console.log(this.list)
+                    }
+                )
+            },
+            handleDelete(key) {
+                axios({
+                    method: api.delete.method,
+                    url: api.delete.url,
+                    params: {
+                        key: key
+                    }
+                }).then(response => {
+                        if (response.data) {
+                            this.$message({
+                                message: '删除成功',
+                                type: 'success'
+                            });
+                        } else {
+                            this.$message.error('删除失败');
+                        }
+                    }
+                )
+                this.reInit()
+                this.init()
+            },
+            setUser(user) {
+                console.log('setUser')
+                this.user = user
+                //显示出表单
+                this.visible = true
+            },
+            update() {
+                //此处调用后台更新数据
+                console.log(this.user)
+                //隐藏出表单
+                this.visible = false
+            },
+            reInit() {
+                this.keyWork = ''
+            }
+        }
+    })
+</script>
+</html>
