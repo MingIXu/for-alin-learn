@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.example.demo.entity.User;
 import com.example.demo.mapper.UserMapper;
+import com.example.demo.service.UserserviceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,15 +16,29 @@ import java.util.List;
 @RequestMapping("user")
 public class UserController {
     @Autowired
-    UserMapper userMapper;
-    @GetMapping("list")
-    public Object userList(String keyWord){
-        System.out.println(keyWord);
-        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
-        if (!StringUtils.isEmpty(keyWord)){
-            queryWrapper.like("name",keyWord);
-        }
-        List<User> users = userMapper.selectList(queryWrapper);
-        return users;
-    }
+    private UserserviceImpl userservice;
+
+   @RequestMapping("/save")
+    private String save(String name,String birthday){
+       User user = new User();
+       user.setId(Long.valueOf(2));
+       user.setAccount("002");
+       user.setName(name);
+       user.setBirthday(birthday);
+       userservice.save(user);
+       return "save successfully";
+   }
+
+//    @Autowired
+//    UserMapper userMapper;
+//    @GetMapping("list")
+//    public Object userList(String keyWord){
+//        System.out.println(keyWord);
+//        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+//        if (!StringUtils.isEmpty(keyWord)){
+//            queryWrapper.like("name",keyWord);
+//        }
+//        List<User> users = userMapper.selectList(queryWrapper);
+//        return users;
+//    }
 }

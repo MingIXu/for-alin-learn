@@ -1,5 +1,5 @@
 spring:
-  #\u6570\u636E\u6E90\u914D\u7F6E
+  #\u6570\u636E\u6E90\u914D\u7F6E  alin---数据库名称
   datasource:
     url: jdbc:mysql://101.132.129.130:3306/alin?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf8&useSSL=false
     username: root

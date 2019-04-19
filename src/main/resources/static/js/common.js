@@ -7,5 +7,9 @@ const api = {
     delete: {
         method: 'get',
         url: '/user/delete',
+    },
+    save:{
+        method: 'post',
+        url: '/user/save',
     }
 }

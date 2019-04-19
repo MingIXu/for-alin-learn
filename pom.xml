@@ -23,6 +23,7 @@
 
     <dependencies>
         <dependency>
+            <!--添加支持web模块-->
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
