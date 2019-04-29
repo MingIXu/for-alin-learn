@@ -39,4 +39,14 @@ public class User implements Serializable {
     public void setBirthday(String birthday) {
         this.birthday = birthday;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", account='" + account + '\'' +
+                ", name='" + name + '\'' +
+                ", birthday='" + birthday + '\'' +
+                '}';
+    }
 }

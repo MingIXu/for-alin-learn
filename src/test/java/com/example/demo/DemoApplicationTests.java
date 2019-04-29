@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import com.example.demo.dao.UserDao;
 import com.example.demo.entity.User;
 import com.example.demo.mapper.UserMapper;
 import org.junit.Test;
@@ -17,8 +18,19 @@ public class DemoApplicationTests {
     UserMapper userMapper;
     @Test
     public void contextLoads() {
-        List<User> users = userMapper.selectList(null);
-        System.out.println();
+        User users = userMapper.getUserById("1");
+        System.out.println(users);
+    }
+    @Autowired
+    UserDao dao;
+    @Test
+    public void testUserDao(){
+        User user = new User();
+        user.setAccount("555");
+        user.setBirthday("2019-02-06");
+        user.setName("464");
+        dao.save(user);
+        System.out.println(user);
     }
 
 }
