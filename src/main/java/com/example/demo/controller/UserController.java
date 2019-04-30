@@ -19,10 +19,10 @@ public class UserController {
     private UserserviceImpl userservice;
 
    @RequestMapping("/save")
-    private String save(String name,String birthday){
+    private String save(long id,String account,String name,String birthday){
        User user = new User();
-       user.setId(Long.valueOf(2));
-       user.setAccount("002");
+       user.setId(id);
+       user.setAccount(account);
        user.setName(name);
        user.setBirthday(birthday);
        userservice.save(user);
