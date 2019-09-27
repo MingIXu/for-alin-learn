@@ -20,7 +20,7 @@
         <mysql.version>8.0.11</mysql.version>
         <druid-spring-boot-starter>1.1.18</druid-spring-boot-starter>
         <velocity.version>1.7</velocity.version>
-        <spring4all.swagger.version>1.7.1.RELEASE</spring4all.swagger.version>
+        <spring4all.swagger.version>1.9.0.RELEASE</spring4all.swagger.version>
         <hutool.version>4.6.1</hutool.version>
     </properties>
 

@@ -29,6 +29,17 @@ mybatis-plus:
     cache-enabled: false
     call-setters-on-nulls: true
 
+#swagger配置参考： https://github.com/SpringForAll/spring-boot-starter-swagger
+swagger:
+  enabled: true
+  title: 管理系统api文档
+  authorization:
+    key-name: token
+  version: 1.0.0
+  base-package: com.example.admin
+  base-path: /**
+  exclude-path: /error, /ops/**
+
 # 日志
 logging:
   #  生成日志文件名称
