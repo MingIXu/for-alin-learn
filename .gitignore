@@ -1,7 +1,8 @@
 HELP.md
 /target/
 !.mvn/wrapper/maven-wrapper.jar
-
+/logs/
+/codeGen/
 ### IntelliJ IDEA ###
 .idea
 *.iws
