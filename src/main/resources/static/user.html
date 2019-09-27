@@ -110,12 +110,12 @@
             init() {
                 axios({
                     method: api.list.method,
-                    url: api.list.url,
+                    url: api.list.url+"1/10",
                     params: {
                         keyWord: this.keyWord
                     }
                 }).then(response => {
-                    this.list = response.data
+                    this.list = response.data.data.list
                     console.log(this.list)
                     }
                 )
@@ -123,10 +123,7 @@
             handleDelete(key) {
                 axios({
                     method: api.delete.method,
-                    url: api.delete.url,
-                    params: {
-                        key: key
-                    }
+                    url: api.delete.url+key,
                 }).then(response => {
                         if (response.data) {
                             this.$message({

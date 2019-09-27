@@ -2,14 +2,18 @@ const basePath = 'http://localhost:8080/'
 const api = {
     list: {
         method: 'get',
-        url: '/user/list',
+        url: '/user/page/',
     },
     delete: {
         method: 'get',
-        url: '/user/delete',
+        url: '/user/delete/',
     },
-    save:{
+    createOrUpdate:{
         method: 'post',
-        url: '/user/save',
+        url: '/user/createOrUpdate/',
+    },
+    read:{
+        method: 'get',
+            url: '/user/read/',
     }
 }
