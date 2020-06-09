@@ -5,7 +5,7 @@ const api = {
         url: '/user/page/',
     },
     delete: {
-        method: 'get',
+        method: 'post',
         url: '/user/delete/',
     },
     createOrUpdate:{
